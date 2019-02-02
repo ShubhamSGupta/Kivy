@@ -19,6 +19,7 @@ class MenuScreen(Screen):
 
 
 class FirstScreen(Screen):
+
     ded_p1 = ObjectProperty()
     p1 = ObjectProperty()
     p2 = ObjectProperty()
@@ -32,7 +33,7 @@ class FirstScreen(Screen):
 
     def random_coins(self):
        # print(t.text)
-        self.coin.text = str(randint(10000,90000))
+        self.coin.text = str(randint(10,90))
         self.p1.disabled = False
         self.p2.disabled = True
         self.ded_p2.text = ''
@@ -74,12 +75,18 @@ class FirstScreen(Screen):
             else:
                 if coin_left > 1:
                     Global.CHANCE = 'Player 2'
-                    if coin_left % 3 == '2':
-                        print('in 2')
+                    if coin_left % 2 == 0 and coin_left % 3 == 2:
+                        #print('in 2')
                         self.ded_p2.text = '2'
-                    elif coin_left % 3 == 1:
-                        print('in 4')
+                    elif coin_left % 2 != 0 and coin_left % 3 == 2:
+                       # print('in 4')
                         self.ded_p2.text = '4'
+                    elif coin_left % 2 == 0 and coin_left % 3 == 1:
+                       # print('in 4')
+                        self.ded_p2.text = '4'
+                    elif coin_left % 2 != 0 and coin_left % 3 == 1:
+                       # print('in 4')
+                        self.ded_p2.text = '2'
                     else:
                         self.ded_p2.text = '2'
                     coin_left = coin_left - int(self.ded_p2.text)
@@ -112,6 +119,7 @@ class HelpScreen(Screen):
 
     def helpgame(self):
         self.help.text = Global.HELP
+
 
 
 class EndScreen(Screen):
